@@ -6,8 +6,8 @@
 
 const SHOP = {
   domain: 'website-999-avinash.myshopify.com',
-  token:  '7f481c5231b99d15b8bb7f73eca4e2e4',
-  api:    'https://website-999-avinash.myshopify.com/api/2024-01/graphql.json',
+  token: '7f481c5231b99d15b8bb7f73eca4e2e4',
+  api: 'https://website-999-avinash.myshopify.com/api/2024-01/graphql.json',
 };
 
 // ── GQL helper ────────────────────────────────────────────────
@@ -29,7 +29,7 @@ async function gql(query, variables = {}) {
 let cart = null; // { id, checkoutUrl, totalQuantity, cost, lines }
 
 function saveCart(c) { cart = c; sessionStorage.setItem('vd_cart', JSON.stringify(c)); }
-function loadCart()  { const s = sessionStorage.getItem('vd_cart'); if (s) cart = JSON.parse(s); }
+function loadCart() { const s = sessionStorage.getItem('vd_cart'); if (s) cart = JSON.parse(s); }
 
 // ── Queries & Mutations ───────────────────────────────────────
 const Q_PRODUCTS = `{
@@ -38,11 +38,12 @@ const Q_PRODUCTS = `{
       id title descriptionHtml handle availableForSale
       priceRange { minVariantPrice { amount currencyCode } }
       compareAtPriceRange { minVariantPrice { amount } }
-      images(first: 1) { edges { node { url altText } } }
-      variants(first: 5) { edges { node {
+      images(first: 5) { edges { node { url altText } } }
+      variants(first: 10) { edges { node {
         id title availableForSale
         price { amount currencyCode }
         compareAtPrice { amount }
+        image { url }
       } } }
     } }
   }
@@ -160,7 +161,7 @@ function updateCartBubble() {
 }
 
 // ── Cart Drawer ───────────────────────────────────────────────
-function openCartDrawer()  { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+function openCartDrawer() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
 function closeCartDrawer() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
 
 function renderCartDrawer() {
@@ -225,14 +226,14 @@ function renderProducts(products) {
     return;
   }
   grid.innerHTML = products.map(p => {
-    const img     = p.images.edges[0]?.node.url || '';
-    const price   = parseFloat(p.priceRange.minVariantPrice.amount);
+    const img = p.images.edges[0]?.node.url || '';
+    const price = parseFloat(p.priceRange.minVariantPrice.amount);
     const compare = parseFloat(p.compareAtPriceRange.minVariantPrice.amount);
-    const curr    = p.priceRange.minVariantPrice.currencyCode;
-    const varId   = p.variants.edges[0]?.node.id || '';
+    const curr = p.priceRange.minVariantPrice.currencyCode;
+    const varId = p.variants.edges[0]?.node.id || '';
     const hasDisc = compare > 0 && compare > price;
-    const disc    = hasDisc ? Math.round((1 - price / compare) * 100) : 0;
-    const avail   = p.availableForSale;
+    const disc = hasDisc ? Math.round((1 - price / compare) * 100) : 0;
+    const avail = p.availableForSale;
     return `
     <div class="product-card card reveal">
       <div class="product-card-img" style="${img ? `background-image:url('${img}');background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#1a0a05;` : 'background:radial-gradient(circle,#6B3A1F,#1a0a05);'}">
@@ -241,13 +242,13 @@ function renderProducts(products) {
       </div>
       <div class="product-card-body">
         <h3 class="product-card-title">${p.title}</h3>
-        <p class="product-card-desc">${p.descriptionHtml.replace(/<[^>]+>/g,'').slice(0,80)}${p.descriptionHtml.length>80?'…':''}</p>
+        <p class="product-card-desc">${p.descriptionHtml.replace(/<[^>]+>/g, '').slice(0, 80)}${p.descriptionHtml.length > 80 ? '…' : ''}</p>
         <div class="product-card-price-row">
           <span class="product-price">${formatPrice(price, curr)}</span>
           ${hasDisc ? `<span class="product-compare">${formatPrice(compare, curr)}</span>` : ''}
         </div>
         <div class="product-card-actions">
-          <button class="btn-orange" style="flex:1;justify-content:center;" ${!avail?'disabled':''} onclick="addToCart('${varId}', this)">
+          <button class="btn-orange" style="flex:1;justify-content:center;" ${!avail ? 'disabled' : ''} onclick="addToCart('${varId}', this)">
             ${avail ? '🛒 Add to Cart' : 'Out of Stock'}
           </button>
           <a href="https://${SHOP.domain}/products/${p.handle}" target="_blank" class="btn-ghost" style="padding:13px 16px;">↗</a>
@@ -382,23 +383,133 @@ function patchNavbar() {
   }
 }
 
-// ── Patch hero & product "Add to Cart" buttons ────────────────
-function patchExistingButtons() {
-  // Hero button -> open shop section
-  document.querySelectorAll('a[href="#product"]').forEach(a => {
-    if (a.textContent.includes('Shop')) {
-      a.href = '#shopSection';
-    }
-  });
-  // Product section Add to Cart button
-  const addBtn = document.querySelector('.add-cart-btn');
-  if (addBtn) {
-    const firstVariantId = 'gid://shopify/ProductVariant/43938766651428';
-    addBtn.removeAttribute('href');
-    addBtn.tagName === 'A'
-      ? addBtn.addEventListener('click', e => { e.preventDefault(); addToCart(firstVariantId, addBtn); })
-      : addBtn.addEventListener('click', () => addToCart(firstVariantId, addBtn));
+// ── Mount Product Section (replaces static HTML with live Shopify data) ─────
+function mountProductSection(product) {
+  const loading = document.getElementById('prod-loading');
+  const layout = document.getElementById('prod-layout');
+  const errEl = document.getElementById('prod-error');
+
+  if (!product) {
+    if (loading) loading.style.display = 'none';
+    if (errEl) errEl.style.display = 'block';
+    return;
   }
+
+  // ── Section title
+  const titleEl = document.getElementById('prod-section-title');
+  if (titleEl) titleEl.innerHTML = `${product.title} <span class="italic-highlight">Hair Oil</span>`;
+
+  // ── Product image (left column)
+  const imgWrap = document.getElementById('prod-img-wrap');
+  const imgLabel = document.getElementById('prod-img-label');
+  const thumbs = document.getElementById('prod-thumbs');
+  const images = product.images.edges.map(e => e.node);
+
+  if (imgWrap) {
+    if (images.length > 0) {
+      // Show main image
+      imgWrap.style.background = 'none';
+      imgWrap.style.border = '2px solid #E8720C';
+      imgWrap.style.boxShadow = '0 0 60px rgba(232,114,12,.25)';
+      imgWrap.innerHTML = `<img src="${images[0].url}" alt="${images[0].altText || product.title}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>`;
+
+      // Thumbnail strip (if multiple images)
+      if (thumbs && images.length > 1) {
+        thumbs.innerHTML = images.map((img, i) =>
+          `<div onclick="document.querySelector('#prod-img-wrap img').src='${img.url}'" style="width:52px;height:52px;border-radius:8px;border:2px solid ${i === 0 ? '#E8720C' : '#2e1508'};overflow:hidden;cursor:pointer;transition:.2s;flex-shrink:0;background:#1a0a05;">
+            <img src="${img.url}" style="width:100%;height:100%;object-fit:cover;"/>
+           </div>`
+        ).join('');
+        // Update thumb active border on click
+        thumbs.querySelectorAll('div').forEach((t, i) => {
+          t.addEventListener('click', () => {
+            thumbs.querySelectorAll('div').forEach(x => x.style.borderColor = '#2e1508');
+            t.style.borderColor = '#E8720C';
+          });
+        });
+      }
+    } else {
+      // Fallback: SVG placeholder
+      imgWrap.innerHTML = `<svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="1.5"><path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z"/><path d="M12 6c-1 2 .5 5 0 7s-2 3-2 3"/></svg><span style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:#C9A84C;">Sacred Herbs</span>`;
+    }
+    if (imgLabel) imgLabel.textContent = product.title;
+  }
+
+  // ── Description
+  const desc = document.getElementById('prod-description');
+  if (desc) {
+    const plainText = product.descriptionHtml.replace(/<[^>]+>/g, '').trim();
+    desc.textContent = plainText ||
+      'A potent blend of 54 Ayurvedic herbs cold-pressed into a single bottle. Deeply nourishes your scalp, strengthens roots, and brings back the hair you were born with.';
+  }
+
+  // ── Variants as size pills
+  const variantsEl = document.getElementById('prod-variants');
+  const priceRow = document.getElementById('prod-price-row');
+  const atcBtn = document.getElementById('prod-atc-btn');
+  const variants = product.variants.edges.map(e => e.node);
+
+  let selectedVariant = variants.find(v => v.availableForSale) || variants[0];
+
+  function updatePrice(variant) {
+    if (!priceRow) return;
+    const price = parseFloat(variant.price.amount);
+    const compare = variant.compareAtPrice ? parseFloat(variant.compareAtPrice.amount) : 0;
+    const curr = variant.price.currencyCode;
+    const hasDisc = compare > 0 && compare > price;
+    const disc = hasDisc ? Math.round((1 - price / compare) * 100) : 0;
+    priceRow.innerHTML = `
+      <span class="price-main">${formatPrice(price, curr)}</span>
+      ${hasDisc ? `<span class="price-old">${formatPrice(compare, curr)}</span><span class="badge-off">${disc}% OFF</span>` : ''}`;
+  }
+
+  function selectVariant(variant, allPills) {
+    selectedVariant = variant;
+    // Update active pill
+    allPills.forEach(p => p.classList.remove('active'));
+    allPills.find(p => p.dataset.variantId === variant.id)?.classList.add('active');
+    // Update price
+    updatePrice(variant);
+    // Update image if variant has one
+    const vImg = variant.image?.url;
+    const mainImg = document.querySelector('#prod-img-wrap img');
+    if (vImg && mainImg) mainImg.src = vImg;
+    // Update ATC button
+    if (atcBtn) {
+      atcBtn.disabled = !variant.availableForSale;
+      atcBtn.innerHTML = variant.availableForSale ? '🛒 ADD TO CART' : '⚠️ Out of Stock';
+    }
+  }
+
+  if (variantsEl && variants.length > 0) {
+    variantsEl.innerHTML = variants.map(v =>
+      `<button class="size-pill${v.id === selectedVariant?.id ? ' active' : ''}${!v.availableForSale ? ' sold-out-pill' : ''}" data-variant-id="${v.id}" ${!v.availableForSale ? 'title="Out of Stock"' : ''}>
+        ${v.title === 'Default Title' ? product.title.split(' ')[0] : v.title}
+        ${!v.availableForSale ? ' <span style="font-size:9px;opacity:.6;">(sold out)</span>' : ''}
+       </button>`
+    ).join('');
+
+    const pills = [...variantsEl.querySelectorAll('.size-pill')];
+    pills.forEach((pill, i) => {
+      pill.addEventListener('click', () => selectVariant(variants[i], pills));
+    });
+
+    // Init price for selected variant
+    updatePrice(selectedVariant);
+  }
+
+  // ── Add to Cart button
+  if (atcBtn) {
+    atcBtn.disabled = !selectedVariant?.availableForSale;
+    atcBtn.innerHTML = selectedVariant?.availableForSale ? '🛒 ADD TO CART' : '⚠️ Out of Stock';
+    atcBtn.addEventListener('click', () => {
+      if (selectedVariant?.availableForSale) addToCart(selectedVariant.id, atcBtn);
+    });
+  }
+
+  // ── Show layout, hide loader
+  if (loading) loading.style.display = 'none';
+  if (layout) layout.style.display = 'grid';
 }
 
 // ── Boot ──────────────────────────────────────────────────────
@@ -408,8 +519,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadCart();
   injectCartUI();
   patchNavbar();
-  injectShopSection();
-  patchExistingButtons();
+  // injectShopSection(); // Hidden: duplicate product grid not needed
   updateCartBubble();
 
   // Re-wire reveal observer after shop section is injected
@@ -421,13 +531,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.revObs = obs;
   }, 200);
 
-  // Fetch & render products
+  // Fetch & render products (shared fetch for both product section + grid)
   try {
     const data = await gql(Q_PRODUCTS);
     const products = data?.products?.edges?.map(e => e.node) || [];
+
+    // 1. Mount the hero product section with the FIRST product
+    mountProductSection(products[0] || null);
+
+    // 2. Render full product grid ("Shop Our Sacred Collection" section)
     renderProducts(products);
   } catch (err) {
     console.error('Failed to fetch products', err);
+    mountProductSection(null);
     const grid = document.getElementById('shopifyProductGrid');
     if (grid) grid.innerHTML = `<p style="color:var(--t2);text-align:center;grid-column:1/-1;">Unable to load products. Please try again.</p>`;
   }
