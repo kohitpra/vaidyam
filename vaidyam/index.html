@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VAIDYAM — Ancient Wisdom for Your Hair</title>
+<meta name="description" content="VAIDYAM — Ancient Ayurvedic 54 Herbs Hair Oil for hair growth, anti-hairfall, and deep scalp nourishment. 100% natural. Zero chemicals. Free delivery above ₹499."/>
+<meta property="og:title" content="VAIDYAM Hair Oil — Ancient Wisdom for Modern Hair"/>
+<meta property="og:description" content="54 sacred Ayurvedic herbs. Zero chemicals. Rooted in Sanatan tradition. Shop VAIDYAM Hair Oil."/>
+<meta name="theme-color" content="#0d0401"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0d0401;--bg2:#1a0a05;--bgc:#1f0e07;--bor:#2e1508;
+  --or:#E8720C;--gr:#4CAF50;--gold:#C9A84C;--cop:#D4956A;
+  --t1:#F5ECD7;--t2:#A89070;--tm:#6B5040;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--t1);font-family:'Lato',sans-serif;line-height:1.7;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat:repeat;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+.section{padding:100px 0;position:relative;z-index:1;}
+.section-label{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+.section-heading{font-family:'Playfair Display',serif;font-size:42px;color:var(--t1);line-height:1.2;margin-bottom:24px;}
+.italic-highlight{font-family:'Playfair Display',serif;font-style:italic;color:var(--cop);}
+.italic-gold{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);}
+.italic-orange{font-family:'Playfair Display',serif;font-style:italic;color:var(--or);}
+/* BUTTONS */
+.btn-orange{background:var(--or);color:#fff;border:none;border-radius:6px;padding:13px 30px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:.5px;font-size:14px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-orange:hover{filter:brightness(1.15);box-shadow:0 0 22px rgba(232,114,12,.45);}
+.btn-green{background:var(--gr);color:#fff;border:none;border-radius:6px;padding:13px 30px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:.5px;font-size:14px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-green:hover{filter:brightness(1.12);box-shadow:0 0 20px rgba(76,175,80,.4);}
+.btn-ghost{background:transparent;color:var(--or);border:1px solid var(--or);border-radius:6px;padding:13px 30px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:.5px;font-size:14px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none;}
+.btn-ghost:hover{background:var(--or);color:#fff;}
+.btn-sm{padding:10px 22px;font-size:13px;}
+/* CARDS */
+.card{background:var(--bgc);border:1px solid var(--bor);border-radius:12px;padding:20px;transition:.25s;}
+.card:hover{border-color:var(--or);box-shadow:0 8px 32px rgba(200,80,10,.18);transform:translateY(-3px);}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-d1{transition-delay:.1s;}
+.reveal-d2{transition-delay:.2s;}
+.reveal-d3{transition-delay:.3s;}
+.reveal-d4{transition-delay:.4s;}
+
+/* ====== NAVBAR ====== */
+.navbar{position:sticky;top:0;width:100%;background:rgba(13,4,1,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--bor);z-index:1000;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{color:var(--t2);font-family:'Lato',sans-serif;font-size:14px;letter-spacing:.4px;text-decoration:none;transition:.2s;}
+.nav-links a:hover{color:var(--t1);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:2px;background:var(--or);border-radius:2px;transition:.3s;}
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--bg2);z-index:2000;flex-direction:column;align-items:center;justify-content:center;gap:32px;transform:translateX(100%);transition:transform .35s ease;}
+.mobile-nav.open{transform:translateX(0);}
+.mobile-nav a{color:var(--t1);font-size:22px;font-family:'Lato',sans-serif;text-decoration:none;}
+.mobile-nav .close-btn{position:absolute;top:20px;right:28px;font-size:28px;color:var(--or);cursor:pointer;}
+
+/* ====== HERO ====== */
+.hero{min-height:100vh;background:radial-gradient(ellipse 80% 60% at 50% 0%,#3D1A08 0%,#1a0602 40%,#0d0401 75%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:120px 24px 80px;}
+.hero-label{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.hero-heading{font-family:'Playfair Display',serif;font-size:68px;line-height:1.12;color:#fff;margin-bottom:20px;}
+.hero-sub{font-size:16px;color:var(--t2);max-width:460px;margin:0 auto 36px;line-height:1.8;}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:0;margin-top:52px;border:1px solid var(--bor);border-radius:12px;overflow:hidden;background:rgba(31,14,7,.6);}
+.stat-item{flex:1;padding:20px 32px;text-align:center;}
+.stat-item+.stat-item{border-left:1px solid var(--bor);}
+.stat-number{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:700;color:#fff;display:block;}
+.stat-label{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--tm);margin-top:4px;display:block;}
+/* Particles */
+.particle{position:absolute;border-radius:50%;background:var(--or);pointer-events:none;opacity:.35;}
+@keyframes floatUp{0%{transform:translateY(0);opacity:.35;}100%{transform:translateY(-180px);opacity:0;}}
+/* Hero animations */
+@keyframes heroIn{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.hero-label{animation:heroIn .9s ease both;}
+.hero-heading{animation:heroIn .9s ease .15s both;}
+.hero-sub{animation:heroIn .9s ease .3s both;}
+.hero-btns{animation:heroIn .9s ease .45s both;}
+.hero-stats{animation:heroIn .9s ease .6s both;}
+
+/* ====== BRAND STORY ====== */
+.brand-story{background:var(--bg);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.img-placeholder{background:linear-gradient(135deg,#1a3a3a 0%,#0a1a2a 60%,#1a0a05 100%);border-radius:16px;height:380px;width:100%;display:flex;align-items:center;justify-content:center;position:relative;}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;}
+.mini-card{background:var(--bgc);border:1px solid var(--bor);border-radius:10px;padding:14px;transition:.25s;}
+.mini-card:hover{border-color:var(--or);}
+.mini-icon{font-size:22px;margin-bottom:6px;}
+.mini-title{font-family:'Lato',sans-serif;font-weight:700;font-size:14px;color:#fff;margin-bottom:3px;}
+.mini-sub{font-size:12px;color:var(--tm);}
+
+/* ====== PRODUCT ====== */
+.product-section{background:var(--bg2);}
+.product-col{display:grid;grid-template-columns:2fr 3fr;gap:60px;align-items:center;margin-top:48px;}
+.product-circle{width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,#6B3A1F 0%,#3D1A08 50%,#1a0a05 100%);border:2px solid var(--or);box-shadow:0 0 60px rgba(232,114,12,.25);margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+.bullets-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0;}
+.bullet-item{font-size:13px;color:var(--t1);display:flex;align-items:center;gap:7px;}
+.size-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.size-pill{border:1px solid var(--bor);color:var(--t2);border-radius:20px;padding:7px 18px;font-size:13px;cursor:pointer;transition:.2s;background:transparent;font-family:'Lato',sans-serif;}
+.size-pill.active,.size-pill:hover{background:var(--or);border-color:var(--or);color:#fff;}
+.price-row{display:flex;align-items:center;gap:14px;margin-top:20px;flex-wrap:wrap;}
+.price-main{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:700;color:#fff;}
+.price-old{font-size:16px;text-decoration:line-through;color:var(--tm);}
+.badge-off{background:#1a3a1a;color:var(--gr);border-radius:4px;padding:3px 10px;font-size:12px;font-weight:700;}
+.add-cart-btn{width:100%;justify-content:center;margin-top:16px;font-size:15px;}
+.delivery-note{font-size:12px;color:var(--tm);margin-top:10px;text-align:center;}
+.product-label{font-family:'Lato',sans-serif;font-size:14px;font-weight:700;color:var(--t2);text-align:center;margin-top:14px;}
+
+/* ====== HERBS ====== */
+.herbs-section{background:var(--bg);}
+.filter-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:36px;}
+.filter-pill{border:1px solid var(--bor);color:var(--t2);border-radius:20px;padding:7px 18px;font-size:13px;cursor:pointer;transition:.2s;background:transparent;font-family:'Lato',sans-serif;}
+.filter-pill.active,.filter-pill:hover{background:var(--or);border-color:var(--or);color:#fff;}
+.herbs-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+.herb-card{background:var(--bgc);border:1px solid var(--bor);border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;transition:.2s;}
+.herb-card:hover{border-color:var(--or);transform:scale(1.04);}
+.herb-icon{width:40px;height:40px;border-radius:8px;background:var(--bor);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Lato',sans-serif;font-weight:700;font-size:18px;color:var(--or);}
+.herb-name{font-family:'Lato',sans-serif;font-weight:700;font-size:12px;color:#fff;margin-bottom:3px;}
+.herb-benefit{font-size:10px;color:var(--tm);}
+.load-more-wrap{text-align:center;margin-top:32px;}
+
+/* ====== BENEFITS ====== */
+.benefits-section{background:var(--bg2);}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:60px;}
+.benefit-card{background:var(--bgc);border:1px solid var(--bor);border-radius:12px;padding:28px;text-align:center;transition:.25s;}
+.benefit-card:hover{border-color:var(--or);box-shadow:0 8px 32px rgba(200,80,10,.18);transform:translateY(-3px);}
+.benefit-icon{font-size:42px;margin-bottom:14px;display:block;}
+.benefit-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;}
+.benefit-desc{font-size:14px;color:var(--t2);line-height:1.7;}
+.how-heading{text-align:center;font-family:'Playfair Display',serif;font-size:30px;color:#fff;margin-bottom:36px;}
+.steps-row{display:flex;align-items:flex-start;justify-content:center;max-width:800px;margin:0 auto;}
+.step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;}
+.step-circle{width:52px;height:52px;border-radius:50%;background:rgba(232,114,12,.12);border:1px solid var(--or);color:var(--or);font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-connector{flex:1;border-top:1px dashed var(--bor);margin-top:26px;}
+.step-title{font-family:'Lato',sans-serif;font-weight:700;font-size:14px;color:#fff;margin-top:12px;}
+.step-desc{font-size:12px;color:var(--tm);max-width:110px;margin-top:4px;}
+
+/* ====== TESTIMONIALS ====== */
+.testimonials-section{background:var(--bg);}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testi-card{background:var(--bgc);border:1px solid var(--bor);border-radius:12px;padding:28px;transition:.25s;}
+.testi-card:hover{border-color:var(--or);box-shadow:0 8px 32px rgba(200,80,10,.15);}
+.stars{color:var(--gold);font-size:16px;letter-spacing:2px;}
+.testi-quote{font-style:italic;font-size:15px;color:var(--t2);line-height:1.8;margin:14px 0;position:relative;}
+.testi-quote::before{content:'\201C';font-size:36px;color:var(--gold);opacity:.4;line-height:0;vertical-align:-14px;}
+.testi-quote::after{content:'\201D';font-size:36px;color:var(--gold);opacity:.4;line-height:0;vertical-align:-14px;}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--or),var(--gold));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;flex-shrink:0;}
+.testi-name{font-weight:700;font-size:14px;color:#fff;}
+.testi-location{font-size:12px;color:var(--tm);}
+.trust-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:32px;margin-top:48px;}
+.trust-badge{font-size:13px;color:var(--gold);display:flex;align-items:center;gap:8px;}
+
+/* ====== SUPPORT ====== */
+.support-section{background:var(--bg2);}
+.contact-cards{display:flex;gap:20px;justify-content:center;max-width:560px;margin:0 auto 32px;flex-wrap:wrap;}
+.contact-card{background:var(--bgc);border:1px solid var(--bor);border-radius:12px;padding:32px;flex:1;min-width:220px;text-align:center;transition:.25s;}
+.contact-card:hover{border-color:var(--or);}
+.contact-icon{font-size:42px;margin-bottom:12px;display:block;}
+.contact-title{font-weight:700;font-size:18px;color:#fff;margin-bottom:8px;}
+.contact-sub{font-size:13px;color:var(--tm);}
+.contact-links{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;}
+.contact-link{font-size:13px;color:var(--tm);cursor:pointer;transition:.2s;text-decoration:none;}
+.contact-link:hover{color:var(--or);}
+
+/* ====== FINAL CTA ====== */
+.final-cta{background:radial-gradient(ellipse 60% 80% at 50% 50%,#3D1A08 0%,#0d0401 70%);padding:100px 0;text-align:center;}
+.deco-line{font-size:16px;color:var(--bor);margin-bottom:28px;letter-spacing:4px;}
+.final-heading{font-family:'Playfair Display',serif;font-size:46px;color:#fff;margin-bottom:12px;}
+.final-sub{font-size:16px;color:var(--t2);letter-spacing:2px;margin-bottom:32px;}
+.final-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+/* ====== FOOTER ====== */
+footer{background:var(--bg);border-top:1px solid #1f0e07;padding:60px 40px 30px;}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1200px;margin:0 auto;}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.footer-logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;}
+.footer-tagline{font-size:13px;color:var(--tm);margin-bottom:20px;line-height:1.6;}
+.social-row{display:flex;gap:12px;}
+.social-icon{width:32px;height:32px;border-radius:50%;background:var(--bgc);border:1px solid var(--bor);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:.2s;text-decoration:none;color:var(--t2);}
+.social-icon:hover{border-color:var(--or);color:var(--or);}
+.footer-col-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block;}
+.footer-links{list-style:none;}
+.footer-links li{margin-bottom:0;}
+.footer-links a{color:var(--t2);font-size:14px;text-decoration:none;line-height:2.2;display:block;transition:.2s;}
+.footer-links a:hover{color:var(--t1);}
+.footer-input{background:var(--bgc);border:1px solid var(--bor);border-radius:6px;padding:11px 14px;color:var(--t1);width:100%;margin-top:12px;font-family:'Lato',sans-serif;font-size:13px;outline:none;transition:.2s;}
+.footer-input:focus{border-color:var(--or);}
+.footer-input::placeholder{color:var(--tm);}
+.footer-bottom{border-top:1px solid #1f0e07;margin-top:40px;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1200px;margin-left:auto;margin-right:auto;}
+.footer-copy{font-size:12px;color:var(--tm);}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:1023px){
+  .herbs-grid{grid-template-columns:repeat(4,1fr);}
+  .footer-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:767px){
+  .navbar{padding:0 20px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .mobile-nav{display:flex;}
+  .hero-heading{font-size:38px;}
+  .section-heading{font-size:30px;}
+  .hero-stats{flex-direction:column;}
+  .stat-item+.stat-item{border-left:none;border-top:1px solid var(--bor);}
+  .two-col{grid-template-columns:1fr;}
+  .product-col{grid-template-columns:1fr;}
+  .benefits-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .herbs-grid{grid-template-columns:repeat(3,1fr);}
+  .footer-grid{grid-template-columns:1fr;}
+  footer{padding:40px 20px 20px;}
+  .final-heading{font-size:32px;}
+  .steps-row{flex-direction:column;align-items:center;gap:24px;}
+  .step-connector{width:1px;height:24px;border-top:none;border-left:1px dashed var(--bor);margin-top:0;margin-left:26px;}
+  .mini-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .herbs-grid{grid-template-columns:repeat(2,1fr);}
+  .hero-heading{font-size:32px;}
+  .hero-stats{flex-direction:column;}
+  .benefits-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="2"><path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z"/><path d="M12 2v20M3 12h18"/></svg>
+    <span class="nav-logo-text">VAIDYAM</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#story">About</a></li>
+    <li><a href="#product">Product</a></li>
+    <li><a href="#herbs">Herbs</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#support">Contact</a></li>
+  </ul>
+  <a href="#product" class="btn-orange btn-sm">Buy Now</a>
+  <div class="hamburger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav">
+  <span class="close-btn" onclick="document.querySelector('.mobile-nav').classList.remove('open')">✕</span>
+  <a href="#story" onclick="document.querySelector('.mobile-nav').classList.remove('open')">About</a>
+  <a href="#product" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Product</a>
+  <a href="#herbs" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Herbs</a>
+  <a href="#benefits" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Benefits</a>
+  <a href="#reviews" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Reviews</a>
+  <a href="#support" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Contact</a>
+  <a href="#product" class="btn-orange" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Buy Now</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <!-- Particles -->
+  <div class="particle" style="width:5px;height:5px;left:15%;bottom:20%;animation:floatUp 6s infinite 0s;"></div>
+  <div class="particle" style="width:4px;height:4px;left:28%;bottom:15%;animation:floatUp 8s infinite 1.2s;"></div>
+  <div class="particle" style="width:6px;height:6px;left:70%;bottom:25%;animation:floatUp 5.5s infinite 2.5s;"></div>
+  <div class="particle" style="width:4px;height:4px;left:82%;bottom:18%;animation:floatUp 7s infinite 0.8s;"></div>
+  <div class="particle" style="width:5px;height:5px;left:45%;bottom:10%;animation:floatUp 9s infinite 3.1s;"></div>
+  <div class="particle" style="width:7px;height:7px;left:58%;bottom:22%;animation:floatUp 6.5s infinite 1.8s;"></div>
+
+  <p class="hero-label">✦ ANCIENT WISDOM · MODERN HAIR ✦</p>
+  <h1 class="hero-heading">
+    Where Ancient<br>
+    <span class="italic-highlight">Sanatan</span> Wisdom<br>
+    Meets Your Hair
+  </h1>
+  <p class="hero-sub">VAIDYAM is rooted in Ayurvedic tradition — 54 sacred herbs, zero chemicals, crafted to restore your hair's ancient glory.</p>
+  <div class="hero-btns">
+    <a href="#product" class="btn-orange">🛒 Shop Hair Oil</a>
+    <a href="#story" class="btn-green">Learn More</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-number" data-target="54" data-suffix="">0</span>
+      <span class="stat-label">Herbs Used</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="100" data-suffix="%">0</span>
+      <span class="stat-label">Natural Ingredients</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="0" data-suffix="%">0%</span>
+      <span class="stat-label">Chemicals</span>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND STORY -->
+<section class="section brand-story reveal" id="story">
+  <div class="container">
+    <div class="two-col">
+      <div class="reveal reveal-d1">
+        <div class="img-placeholder">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="1.2" opacity="0.5"><path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z"/><path d="M12 2c-1 4 1 8 0 10s-3 3-3 3"/></svg>
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+          <a href="#" class="btn-ghost btn-sm">Watch Our Story →</a>
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <span class="section-label">OUR STORY</span>
+        <h2 class="section-heading">Born from <span class="italic-highlight">Devotion,</span><br>Raised by <span class="italic-highlight">Dharma</span></h2>
+        <p style="font-size:15px;color:var(--t2);line-height:1.85;margin-bottom:16px;">VAIDYAM was born in a small home in South India, where a grandmother blended 54 sacred herbs every full moon for her family's hair — a ritual passed down through three generations.</p>
+        <p style="font-size:15px;color:var(--t2);line-height:1.85;margin-bottom:16px;">That same recipe — unchanged, uncompromised — is now bottled for you. No shortcuts. No synthetics. Only devotion and the wisdom of the ancients.</p>
+        <p style="font-size:15px;color:var(--t2);line-height:1.85;margin-bottom:28px;">We believe hair care is a sacred ritual. VAIDYAM is not just a product; it is a prayer for your roots, a gift from the earth, and a promise to your ancestors.</p>
+        <div class="mini-grid">
+          <div class="mini-card"><div class="mini-icon">🌿</div><div class="mini-title">54 Herbs</div><div class="mini-sub">Sourced across India</div></div>
+          <div class="mini-card"><div class="mini-icon">⚗️</div><div class="mini-title">100% Natural</div><div class="mini-sub">No synthetics ever</div></div>
+          <div class="mini-card"><div class="mini-icon">🔬</div><div class="mini-title">Lab Certified</div><div class="mini-sub">AYUSH approved</div></div>
+          <div class="mini-card"><div class="mini-icon">🚫</div><div class="mini-title">0% Chemicals</div><div class="mini-sub">No sulfates or parabens</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="section product-section reveal" id="product">
+  <div class="container">
+    <div style="text-align:center;">
+      <span class="section-label">THE PRODUCT</span>
+      <h2 class="section-heading">VAIDYAM <span class="italic-highlight">54 Herbs</span> Hair Oil</h2>
+    </div>
+    <div class="product-col">
+      <div class="reveal reveal-d1" style="text-align:center;">
+        <div class="product-circle">
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="1.5"><path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z"/><path d="M12 6c-1 2 .5 5 0 7s-2 3-2 3"/></svg>
+          <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--gold);">54 Herbs</span>
+        </div>
+        <p class="product-label">VAIDYAM 54 Herbs Hair Oil</p>
+      </div>
+      <div class="reveal reveal-d2">
+        <h3 style="font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:12px;">Liquid Gold for Your <span class="italic-highlight">Mutal 🌿</span></h3>
+        <p style="font-size:14px;color:var(--t2);line-height:1.8;margin-bottom:20px;">A potent blend of 54 Ayurvedic herbs cold-pressed into a single bottle. Deeply nourishes your scalp, strengthens roots, and brings back the hair you were born with.</p>
+        <div class="bullets-grid">
+          <div class="bullet-item"><span style="color:var(--gr);">✅</span> Stimulates hair follicles</div>
+          <div class="bullet-item"><span style="color:var(--gr);">✅</span> Reduces hair fall</div>
+          <div class="bullet-item"><span style="color:var(--gr);">✅</span> Deep scalp nourishment</div>
+          <div class="bullet-item"><span style="color:var(--gr);">✅</span> Prevents dandruff</div>
+          <div class="bullet-item"><span style="color:var(--gr);">✅</span> Adds mirror shine</div>
+          <div class="bullet-item"><span style="color:var(--gr);">✅</span> Strengthens roots</div>
+        </div>
+        <div class="size-pills">
+          <button class="size-pill active">50ml</button>
+          <button class="size-pill">100ml</button>
+          <button class="size-pill">200ml</button>
+        </div>
+        <div class="price-row">
+          <span class="price-main">₹999</span>
+          <span class="price-old">₹1,499</span>
+          <span class="badge-off">33% OFF</span>
+        </div>
+        <a href="#" class="btn-orange add-cart-btn">🛒 ADD TO CART</a>
+        <p class="delivery-note">🚚 Free delivery above ₹499 · COD Available</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERBS GRID -->
+<section class="section herbs-section reveal" id="herbs">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px;">
+      <span class="section-label">INGREDIENTS</span>
+      <h2 class="section-heading">54 <span class="italic-highlight">Sacred</span> Herbs</h2>
+    </div>
+    <div class="filter-row">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="Root Herbs">Root Herbs</button>
+      <button class="filter-pill" data-filter="Leaf Herbs">Leaf Herbs</button>
+      <button class="filter-pill" data-filter="Seed Herbs">Seed Herbs</button>
+      <button class="filter-pill" data-filter="Bark Herbs">Bark Herbs</button>
+      <button class="filter-pill" data-filter="Flower Herbs">Flower Herbs</button>
+    </div>
+    <div class="herbs-grid" id="herbsGrid">
+      <!-- 30 herb cards built via JS below -->
+    </div>
+    <div class="load-more-wrap" style="margin-top:32px;">
+      <button class="btn-ghost" id="seeAllBtn">See All 54 Herbs ↓</button>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section benefits-section reveal" id="benefits">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="section-label">BENEFITS</span>
+      <h2 class="section-heading">Transform Your <span class="italic-highlight">Kesh</span></h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal reveal-d1"><span class="benefit-icon">🌱</span><div class="benefit-title">New Hair Growth</div><p class="benefit-desc">Bhringraj and Brahmi activate dormant follicles to trigger fresh growth within weeks.</p></div>
+      <div class="benefit-card reveal reveal-d2"><span class="benefit-icon">💪</span><div class="benefit-title">Stops Hair Fall</div><p class="benefit-desc">A trio of root herbs fortifies each strand from inside, drastically reducing daily hair fall.</p></div>
+      <div class="benefit-card reveal reveal-d3"><span class="benefit-icon">✨</span><div class="benefit-title">Mirror Shine</div><p class="benefit-desc">Cold-pressed sesame and coconut coat each strand with natural light-reflecting oils.</p></div>
+      <div class="benefit-card reveal reveal-d1"><span class="benefit-icon">❄️</span><div class="benefit-title">Dandruff Free</div><p class="benefit-desc">Neem, Tulsi, and Tea Tree create a hostile environment for fungal scalp issues.</p></div>
+      <div class="benefit-card reveal reveal-d2"><span class="benefit-icon">🧘</span><div class="benefit-title">Deep Conditioning</div><p class="benefit-desc">Aloe Vera and Moringa penetrate the hair cortex, restoring lost moisture and elasticity.</p></div>
+      <div class="benefit-card reveal reveal-d3"><span class="benefit-icon">🌿</span><div class="benefit-title">Colour Safe</div><p class="benefit-desc">No harsh chemicals means your natural or dyed hair colour stays vibrant and undamaged.</p></div>
+    </div>
+    <!-- HOW TO USE -->
+    <div style="margin-top:20px;">
+      <h3 class="how-heading">How to Use 🌿</h3>
+      <div class="steps-row">
+        <div class="step">
+          <div class="step-circle">1</div>
+          <div class="step-title">Apply Oil</div>
+          <p class="step-desc">Take 10–15 drops into your palm</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <div class="step-title">Massage</div>
+          <p class="step-desc">Work into scalp with fingertips for 5 mins</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-title">Leave Overnight</div>
+          <p class="step-desc">Cover with warm towel if possible</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-circle">4</div>
+          <div class="step-title">Wash Hair</div>
+          <p class="step-desc">Use a mild shampoo the next morning</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section reveal" id="reviews">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="section-label">REVIEWS</span>
+      <h2 class="section-heading">Blessed by <span class="italic-gold">Thousands</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal reveal-d1">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">I had severe hair fall for two years. After three weeks of VAIDYAM, my brush barely collects any hair. This is truly magical.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div><div class="testi-name">Priya M.</div><div class="testi-location">Mumbai</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-d2">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">The fragrance alone tells you this is pure and ancient. My scalp feels nourished and my hair has grown noticeably thicker in 45 days.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div><div class="testi-name">Arjun R.</div><div class="testi-location">Bengaluru</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-d3">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">I've tried every oil in the market. Nothing compares to VAIDYAM. It's like my grandmother's nuskha in a bottle.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">K</div>
+          <div><div class="testi-name">Kavitha S.</div><div class="testi-location">Chennai</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="trust-badges">
+      <div class="trust-badge">⭐ 4.9/5 Rating</div>
+      <div class="trust-badge">👥 10,000+ Happy Customers</div>
+      <div class="trust-badge">🌿 100% Natural</div>
+      <div class="trust-badge">✅ AYUSH Certified</div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="section support-section reveal" id="support">
+  <div class="container" style="text-align:center;">
+    <span class="section-label">SUPPORT</span>
+    <h2 class="section-heading" style="margin-bottom:40px;">We're Here to <span class="italic-highlight">Serve</span> You 🙏</h2>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <span class="contact-icon">📱</span>
+        <div class="contact-title">WhatsApp</div>
+        <p class="contact-sub">Chat with us directly — we reply within minutes</p>
+        <a href="https://wa.me/919999999999" class="btn-green" style="width:100%;justify-content:center;margin-top:20px;">CHAT NOW</a>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-title">Email</div>
+        <p class="contact-sub">support@vaidyam.com</p>
+        <a href="mailto:support@vaidyam.com" class="btn-orange" style="width:100%;justify-content:center;margin-top:20px;">EMAIL US</a>
+      </div>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link">📦 Track Your Order</a>
+      <a class="contact-link">🔄 Return Policy</a>
+      <a class="contact-link">❓ FAQ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta reveal">
+  <div class="container">
+    <p class="deco-line">——— 🌿 ———</p>
+    <h2 class="final-heading">Your Kesh Deserves <span class="italic-orange">VAIDYAM</span></h2>
+    <p class="final-sub">Pure. Ancient. Proven.</p>
+    <div class="final-btns">
+      <a href="#product" class="btn-orange">🛒 Shop Now</a>
+      <a href="#herbs" class="btn-green">🌿 View Ingredients</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="2"><path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z"/></svg>
+        <span class="footer-logo-text">VAIDYAM</span>
+      </div>
+      <p class="footer-tagline">Ancient Roots. Modern Results.<br>Blessed by Nature. Backed by Science.</p>
+      <div class="social-row">
+        <a href="#" class="social-icon">📷</a>
+        <a href="#" class="social-icon">👤</a>
+        <a href="#" class="social-icon">▶️</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-title">Quick Links</span>
+      <ul class="footer-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#story">About</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#herbs">Herbs</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#support">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Our Policies</span>
+      <ul class="footer-links">
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Stay in Touch</span>
+      <p style="font-size:13px;color:var(--tm);">Get Ayurvedic hair tips and exclusive offers.</p>
+      <input class="footer-input" type="email" placeholder="Your email address"/>
+      <button class="btn-orange" style="width:100%;justify-content:center;margin-top:10px;">Subscribe</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 VAIDYAM · Crafted with 🌿 in India</span>
+    <span class="footer-copy">Made with ancient wisdom</span>
+  </div>
+</footer>
+
+<script src="shopify.js"></script>
+<script>
+// Herbs data
+const herbs = [
+  {name:'Bhringraj',benefit:'Hair growth',cat:'Root Herbs'},
+  {name:'Brahmi',benefit:'Scalp cooling',cat:'Leaf Herbs'},
+  {name:'Amla',benefit:'Vitamin C boost',cat:'Fruit Herbs'},
+  {name:'Neem',benefit:'Anti-dandruff',cat:'Leaf Herbs'},
+  {name:'Hibiscus',benefit:'Thickens hair',cat:'Flower Herbs'},
+  {name:'Methi',benefit:'Protein rich',cat:'Seed Herbs'},
+  {name:'Curry Leaf',benefit:'Prevents greying',cat:'Leaf Herbs'},
+  {name:'Ashwagandha',benefit:'Stress relief',cat:'Root Herbs'},
+  {name:'Shikakai',benefit:'Natural cleanser',cat:'Bark Herbs'},
+  {name:'Reetha',benefit:'Foaming agent',cat:'Seed Herbs'},
+  {name:'Jatamansi',benefit:'Calms scalp',cat:'Root Herbs'},
+  {name:'Kapoor',benefit:'Stimulates roots',cat:'Bark Herbs'},
+  {name:'Sesame',benefit:'Deep conditioning',cat:'Seed Herbs'},
+  {name:'Coconut',benefit:'Moisture lock',cat:'Seed Herbs'},
+  {name:'Castor',benefit:'Thick growth',cat:'Seed Herbs'},
+  {name:'Tulsi',benefit:'Antibacterial',cat:'Leaf Herbs'},
+  {name:'Moringa',benefit:'Protein repair',cat:'Leaf Herbs'},
+  {name:'Aloe Vera',benefit:'Soothing gel',cat:'Leaf Herbs'},
+  {name:'Vetiver',benefit:'Cooling roots',cat:'Root Herbs'},
+  {name:'Sandalwood',benefit:'Fragrance',cat:'Bark Herbs'},
+  {name:'Rosemary',benefit:'Circulation boost',cat:'Leaf Herbs'},
+  {name:'Mustard',benefit:'Warming oil',cat:'Seed Herbs'},
+  {name:'Arnica',benefit:'Strengthens hair',cat:'Flower Herbs'},
+  {name:'Fenugreek',benefit:'Softens strands',cat:'Seed Herbs'},
+  {name:'Lemongrass',benefit:'Scalp cleanser',cat:'Leaf Herbs'},
+  {name:'Cinnamon',benefit:'Blood flow',cat:'Bark Herbs'},
+  {name:'Clove',benefit:'Antifungal',cat:'Flower Herbs'},
+  {name:'Indigo',benefit:'Natural color',cat:'Leaf Herbs'},
+  {name:'Henna',benefit:'Conditions hair',cat:'Leaf Herbs'},
+  {name:'Lodhra',benefit:'Tightens roots',cat:'Bark Herbs'},
+  // Extra 24 for "see all"
+  {name:'Triphala',benefit:'Scalp detox',cat:'Fruit Herbs'},
+  {name:'Noni',benefit:'Antioxidant',cat:'Fruit Herbs'},
+  {name:'Shatavari',benefit:'Nourishes roots',cat:'Root Herbs'},
+  {name:'Guduchi',benefit:'Immunity boost',cat:'Leaf Herbs'},
+  {name:'Manjistha',benefit:'Purifies blood',cat:'Root Herbs'},
+  {name:'Nagarmotha',benefit:'Scalp cleanser',cat:'Root Herbs'},
+  {name:'Kalonji',benefit:'Hair thickening',cat:'Seed Herbs'},
+  {name:'Flaxseed',benefit:'Omega-3 rich',cat:'Seed Herbs'},
+  {name:'Bael',benefit:'Cooling effect',cat:'Fruit Herbs'},
+  {name:'Haritaki',benefit:'Anti-ageing',cat:'Fruit Herbs'},
+  {name:'Kesar',benefit:'Scalp glow',cat:'Flower Herbs'},
+  {name:'Jasmine',benefit:'Fragrant scalp',cat:'Flower Herbs'},
+  {name:'Chamomile',benefit:'Soothes scalp',cat:'Flower Herbs'},
+  {name:'Lavender',benefit:'Stress relief',cat:'Flower Herbs'},
+  {name:'Neem Seed',benefit:'Fungicide',cat:'Seed Herbs'},
+  {name:'Karanja',benefit:'Anti-lice',cat:'Seed Herbs'},
+  {name:'Pippali',benefit:'Detoxifies',cat:'Root Herbs'},
+  {name:'Licorice',benefit:'Scalp heal',cat:'Root Herbs'},
+  {name:'Arjuna Bark',benefit:'Strengthens',cat:'Bark Herbs'},
+  {name:'Babul',benefit:'Antimicrobial',cat:'Bark Herbs'},
+  {name:'Bhrami Oil',benefit:'Brain calming',cat:'Leaf Herbs'},
+  {name:'Pudina',benefit:'Cooling mint',cat:'Leaf Herbs'},
+  {name:'Dracaena',benefit:'Root nourish',cat:'Root Herbs'},
+  {name:'Vidari',benefit:'Rejuvenates',cat:'Root Herbs'},
+];
+
+const grid = document.getElementById('herbsGrid');
+let showAll = false;
+
+function renderHerbs(filter='all') {
+  const visible = showAll ? herbs : herbs.slice(0,30);
+  grid.innerHTML = '';
+  visible.forEach(h => {
+    if(filter !== 'all' && h.cat !== filter) return;
+    const card = document.createElement('div');
+    card.className = 'herb-card reveal';
+    card.dataset.category = h.cat;
+    card.innerHTML = `<div class="herb-icon">${h.name[0]}</div><div class="herb-name">${h.name}</div><div class="herb-benefit">${h.benefit}</div>`;
+    grid.appendChild(card);
+    setTimeout(()=>card.classList.add('visible'),50);
+  });
+}
+renderHerbs();
+
+document.getElementById('seeAllBtn').addEventListener('click',()=>{
+  showAll=!showAll;
+  document.getElementById('seeAllBtn').textContent = showAll ? 'Show Less ↑' : 'See All 54 Herbs ↓';
+  const activeFilter = document.querySelector('.filter-pill.active')?.dataset.filter || 'all';
+  renderHerbs(activeFilter);
+});
+
+// Filter pills
+document.querySelectorAll('.filter-pill').forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    renderHerbs(pill.dataset.filter);
+  });
+});
+
+// Size pills
+document.querySelectorAll('.size-pill').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('.size-pill').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+  });
+});
+
+// Scroll Reveal
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// Counter
+function countUp(el,target){
+  const dur=1400,suffix=el.dataset.suffix||'';
+  const start=performance.now();
+  const step=now=>{
+    const p=Math.min((now-start)/dur,1);
+    el.textContent=Math.floor(p*target)+suffix;
+    if(p<1)requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      countUp(e.target,parseInt(e.target.dataset.target));
+      // For 0%, set immediately
+      if(e.target.dataset.target==='0') e.target.textContent='0%';
+      cntObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.stat-number').forEach(el=>cntObs.observe(el));
+</script>
+</body>
+</html>
