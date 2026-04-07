@@ -849,18 +849,119 @@
       background: var(--bg);
     }
 
-    .testi-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+    /* ─── Testimonial Carousel ─── */
+    /* Outer div centres the carousel and constrains its max width */
+    .testi-carousel-outer {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* The actual clip window – must be 100% of outer, NO max-width here */
+    .testi-carousel-wrap {
+      overflow: hidden;
+      border-radius: 16px;
+      position: relative;
+      width: 100%;
+    }
+
+    .testi-track {
+      display: flex;
+      /* horizontal flex – slides sit side-by-side */
+      flex-direction: row;
+      /* NEVER column; transform-X drives navigation */
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+      align-items: stretch;
+      /* equal-height cards */
+    }
+
+    .testi-slide {
+      min-width: 100%;
+      /* each slide occupies exactly the wrapper width */
+      width: 100%;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      /* small gap so card border doesn't clip */
+      user-select: none;
+      /* prevent text highlight on drag */
+      -webkit-user-select: none;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .testi-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .testi-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bgc);
+      border: 1px solid var(--bor);
+      color: var(--t1);
+      font-size: 20px;
+      cursor: pointer;
+      transition: .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .testi-btn:hover {
+      border-color: var(--or);
+      color: var(--or);
+      background: rgba(232, 114, 12, 0.08);
+    }
+
+    .testi-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 260px;
+    }
+
+    .testi-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bor);
+      cursor: pointer;
+      transition: width .25s, background .25s, border-radius .25s;
+      border: none;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .testi-dot.active {
+      background: var(--or);
+      width: 24px;
+      border-radius: 4px;
     }
 
     .testi-card {
       background: var(--bgc);
       border: 1px solid var(--bor);
-      border-radius: 12px;
-      padding: 28px;
-      transition: .25s;
+      border-radius: 16px;
+      padding: 36px 40px;
+      transition: border-color .25s, box-shadow .25s;
+      width: 100%;
+      /* fill the slide */
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
     }
 
     .testi-card:hover {
@@ -1191,6 +1292,15 @@
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      /* Carousel – tablet (768px – 1023px) */
+      .testi-carousel-outer {
+        max-width: 640px;
+      }
+
+      .testi-card {
+        padding: 30px 32px;
+      }
     }
 
     @media(max-width:767px) {
@@ -1239,8 +1349,31 @@
         grid-template-columns: 1fr;
       }
 
-      .testi-grid {
-        grid-template-columns: 1fr;
+      /* Carousel – mobile (≤767px) adjustments */
+      .testi-carousel-wrap {
+        max-width: 100%;
+        border-radius: 12px;
+      }
+
+      .testi-card {
+        padding: 22px 18px;
+        min-height: 200px;
+        border-radius: 12px;
+      }
+
+      .testi-quote {
+        font-size: 14px;
+      }
+
+      .testi-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
+      }
+
+      .testi-controls {
+        gap: 14px;
+        margin-top: 20px;
       }
 
       .herbs-grid {
@@ -1294,6 +1427,51 @@
 
       .benefits-grid {
         grid-template-columns: 1fr;
+      }
+
+      /* Carousel – small phones (≤480px) */
+      .testi-card {
+        padding: 18px 14px;
+        min-height: 180px;
+        border-radius: 10px;
+      }
+
+      .testi-quote {
+        font-size: 13px;
+        line-height: 1.7;
+        margin: 10px 0;
+      }
+
+      .testi-quote::before,
+      .testi-quote::after {
+        font-size: 28px;
+        vertical-align: -10px;
+      }
+
+      .testi-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+      }
+
+      .testi-controls {
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .testi-dot {
+        width: 6px;
+        height: 6px;
+      }
+
+      .testi-dot.active {
+        width: 18px;
+      }
+
+      .testi-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
       }
     }
   </style>
@@ -1582,15 +1760,16 @@
             <div class="step-connector"></div>
             <div class="step">
               <div class="step-circle">3</div>
-              <div class="step-title">Leave Overnight</div>
-              <p class="step-desc">Cover with warm towel if possible</p>
+              <div class="step-title">Wash Hair</div>
+              <p class="step-desc">Use a mild shampoo the next morning</p>
             </div>
             <div class="step-connector"></div>
             <div class="step">
               <div class="step-circle">4</div>
-              <div class="step-title">Wash Hair</div>
-              <p class="step-desc">Use a mild shampoo the next morning</p>
+              <div class="step-title">Usage</div>
+              <p class="step-desc">Apply three times in a week</p>
             </div>
+
           </div>
         </div>
       </div>
@@ -1603,44 +1782,172 @@
           <span class="section-label">REVIEWS</span>
           <h2 class="section-heading">Blessed by <span class="italic-gold">Thousands</span></h2>
         </div>
-        <div class="testi-grid">
-          <div class="testi-card reveal reveal-d1">
-            <div class="stars">★★★★★</div>
-            <p class="testi-quote">I had severe hair fall for two years. After three weeks of OLIAURA, my brush barely
-              collects any hair. This is truly magical.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">P</div>
-              <div>
-                <div class="testi-name">Priya M.</div>
-                <div class="testi-location">Mumbai</div>
+
+        <!-- Carousel -->
+        <div class="testi-carousel-wrap" id="testiCarouselWrap">
+          <div class="testi-track" id="testiTrack">
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Maine 2 saalon se hair fall se pareshan thi. Teeno hafte OLIAURA lagaaya aur
+                  brush mein baal milne band ho gaye. Yeh oil sach mein chamatkaari hai!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#E8720C,#c45e0a);">P</div>
+                  <div>
+                    <div class="testi-name">Priya Mehta</div>
+                    <div class="testi-location">📍 Mumbai, Maharashtra</div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="testi-card reveal reveal-d2">
-            <div class="stars">★★★★★</div>
-            <p class="testi-quote">The fragrance alone tells you this is pure and ancient. My scalp feels nourished and
-              my hair has grown noticeably thicker in 45 days.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">A</div>
-              <div>
-                <div class="testi-name">Arjun R.</div>
-                <div class="testi-location">Bengaluru</div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Yeh tel ki khushboo hi bata deti hai ki yeh asli aur paavitra hai. Mere baal 45
+                  dinon mein kaafi ghane ho gaye hain. Main bahut khush hoon OLIAURA se!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#2d8a4e,#1f6637);">A</div>
+                  <div>
+                    <div class="testi-name">Arjun Rao</div>
+                    <div class="testi-location">📍 Bengaluru, Karnataka</div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="testi-card reveal reveal-d3">
-            <div class="stars">★★★★★</div>
-            <p class="testi-quote">I've tried every oil in the market. Nothing compares to OLIAURA. It's like my
-              grandmother's nuskha in a bottle.</p>
-            <div class="testi-author">
-              <div class="testi-avatar">K</div>
-              <div>
-                <div class="testi-name">Kavitha S.</div>
-                <div class="testi-location">Chennai</div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Maine market ke saare tel azmaaye hain. OLIAURA ke saamne koi nahi tikta. Yeh
+                  bilkul waise hi hai jaise meri naani ka ghar ka nuskha — bottle mein banda!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#9b59b6,#7d3c98);">K</div>
+                  <div>
+                    <div class="testi-name">Kavitha Subramanian</div>
+                    <div class="testi-location">📍 Chennai, Tamil Nadu</div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Mere pati ke baal bahut jhadte the. Doctor ne bola stress ki wajah se hai.
+                  OLIAURA use karna shuru kiya aur sirf 1 mahine mein asar dikhne laga. Shukriya OLIAURA!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#e74c3c,#c0392b);">S</div>
+                  <div>
+                    <div class="testi-name">Sunitha Krishnamurthy</div>
+                    <div class="testi-location">📍 Hyderabad, Telangana</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Dandruff meri life ki sabse badi problem thi. 6 saal se pareshan tha. OLIAURA ke
+                  3 hafte baad dandruff almost khatam ho gaya. Yeh product kisi vardan se kam nahi!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#1abc9c,#148f77);">R</div>
+                  <div>
+                    <div class="testi-name">Rohit Sharma</div>
+                    <div class="testi-location">📍 Delhi, NCR</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Meri beti ke baal school ki stress se bahut toote. OLIAURA try kiya aur results
+                  dekh ke aankhein bhar aayi. Ab uske baal healthy aur chamakdar hain. Jai Ayurveda!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#f39c12,#d68910);">D</div>
+                  <div>
+                    <div class="testi-name">Deepa Iyer</div>
+                    <div class="testi-location">📍 Pune, Maharashtra</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Gym aur sweating ki wajah se mera scalp bahut oily aur itchy rehta tha. OLIAURA
+                  use karne ke baad scalp ka balance bilkul theek ho gaya. Real Ayurvedic solution!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#3498db,#2471a3);">V</div>
+                  <div>
+                    <div class="testi-name">Vikram Nair</div>
+                    <div class="testi-location">📍 Kochi, Kerala</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Pehle mujhe lagta tha aise products kuch nahi karte. OLIAURA ne mera opinion
+                  badal diya. 2 mahine mein meri hair thickness double ho gayi. Bilkul sach bol rahi hoon!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#e91e8c,#c2185b);">N</div>
+                  <div>
+                    <div class="testi-name">Nandini Gupta</div>
+                    <div class="testi-location">📍 Jaipur, Rajasthan</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Ayodhya mein ek sadhu ji ne kaha tha ki 54 jadibutiyon waale tel se baal
+                  sankranti ke pehle nahi toote. OLIAURA exactly wahi hai. Pooja se pehle lagata hoon — excellent!</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#ff7043,#e64a19);">M</div>
+                  <div>
+                    <div class="testi-name">Manish Tiwari</div>
+                    <div class="testi-location">📍 Varanasi, Uttar Pradesh</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testi-slide">
+              <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Mere papa ke baal 50 ki umar mein zyada jhad rahe the. Maine unhe OLIAURA gift
+                  kiya. Ab woh khud baar baar order karte hain! Puri family use karti hai yeh tel. Worth every rupee!
+                </p>
+                <div class="testi-author">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#26a69a,#00796b);">A</div>
+                  <div>
+                    <div class="testi-name">Ananya Bose</div>
+                    <div class="testi-location">📍 Kolkata, West Bengal</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end track -->
+        </div><!-- end wrap -->
+
+        <!-- Controls -->
+        <div class="testi-controls">
+          <button class="testi-btn" id="testiPrev" aria-label="Previous review">&#8592;</button>
+          <div class="testi-dots" id="testiDots"></div>
+          <button class="testi-btn" id="testiNext" aria-label="Next review">&#8594;</button>
         </div>
+
         <div class="trust-badges">
           <div class="trust-badge">⭐ 4.9/5 Rating</div>
           <div class="trust-badge">👥 10,000+ Happy Customers</div>
@@ -1661,14 +1968,14 @@
             <span class="contact-icon">📱</span>
             <div class="contact-title">WhatsApp</div>
             <p class="contact-sub">Chat with us directly — we reply within minutes</p>
-            <a href="https://wa.me/919999999999" class="btn-green"
+            <a href="https://wa.me/918792239191" class="btn-green"
               style="width:100%;justify-content:center;margin-top:20px;">CHAT NOW</a>
           </div>
           <div class="contact-card">
             <span class="contact-icon">✉️</span>
             <div class="contact-title">Email</div>
-            <p class="contact-sub">support@vaidyam.com</p>
-            <a href="mailto:support@vaidyam.com" class="btn-orange"
+            <p class="contact-sub">care@oliaura.shop</p>
+            <a href="mailto:care@oliaura.shop" class="btn-orange"
               style="width:100%;justify-content:center;margin-top:20px;">EMAIL US</a>
           </div>
         </div>
@@ -1838,6 +2145,57 @@
         renderHerbs(pill.dataset.filter);
       });
     });
+
+    // ─── Testimonial Carousel ───
+    (function () {
+      const track = document.getElementById('testiTrack');
+      const slides = track ? Array.from(track.children) : [];
+      const dotsWrap = document.getElementById('testiDots');
+      const total = slides.length;
+      let cur = 0, autoTimer, startX = 0, isDragging = false;
+
+      function goTo(n) {
+        cur = (n + total) % total;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        dotsWrap.querySelectorAll('.testi-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === cur);
+        });
+      }
+
+      // Build dots
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'testi-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Review ' + (i + 1));
+        d.addEventListener('click', () => { goTo(i); resetAuto(); });
+        dotsWrap.appendChild(d);
+      });
+
+      document.getElementById('testiPrev').addEventListener('click', () => { goTo(cur - 1); resetAuto(); });
+      document.getElementById('testiNext').addEventListener('click', () => { goTo(cur + 1); resetAuto(); });
+
+      // Auto-play
+      function startAuto() { autoTimer = setInterval(() => goTo(cur + 1), 4500); }
+      function resetAuto() { clearInterval(autoTimer); startAuto(); }
+      startAuto();
+
+      // Touch / drag swipe
+      const wrap = document.getElementById('testiCarouselWrap');
+      wrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
+      wrap.addEventListener('touchend', e => {
+        if (!isDragging) return;
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { goTo(diff > 0 ? cur + 1 : cur - 1); resetAuto(); }
+        isDragging = false;
+      });
+      wrap.addEventListener('mousedown', e => { startX = e.clientX; isDragging = true; });
+      wrap.addEventListener('mouseup', e => {
+        if (!isDragging) return;
+        const diff = startX - e.clientX;
+        if (Math.abs(diff) > 40) { goTo(diff > 0 ? cur + 1 : cur - 1); resetAuto(); }
+        isDragging = false;
+      });
+    })();
 
     // Size pills
     document.querySelectorAll('.size-pill').forEach(p => {
