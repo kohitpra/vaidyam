@@ -43,8 +43,8 @@
     }
 
     body {
-      background: var(--bg);
-      color: var(--t1);
+      /* background: var(--bg);
+      color: var(--t1); */
       font-family: 'Lato', sans-serif;
       line-height: 1.7;
       overflow-x: hidden;
@@ -60,7 +60,37 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
       background-repeat: repeat;
     }
+    .video-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+}
 
+#container {
+  height: 500vh;
+  position: relative;
+  z-index: -1;
+}
+
+/* Smooth scrolling fallback */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  #container {
+    height: 350vh;
+  }
+
+  .video-background {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -234,7 +264,7 @@
       position: sticky;
       top: 0;
       width: 100%;
-      background: rgba(13, 4, 1, .94);
+      /* background: rgba(13, 4, 1, .94); */
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--bor);
       z-index: 1000;
@@ -253,10 +283,7 @@
     }
 
     .nav-logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
+      width: 10%;
     }
 
     .nav-links {
@@ -299,7 +326,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: var(--bg2);
+      /* background: var(--bg2); */
       z-index: 2000;
       flex-direction: column;
       align-items: center;
@@ -332,7 +359,7 @@
     /* ====== HERO ====== */
     .hero {
       min-height: 100vh;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, #3D1A08 0%, #1a0602 40%, #0d0401 75%);
+      /* background: radial-gradient(ellipse 80% 60% at 50% 0%, #3D1A08 0%, #1a0602 40%, #0d0401 75%); */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -480,7 +507,7 @@
     }
 
     .img-placeholder {
-      background: linear-gradient(135deg, #1a3a3a 0%, #0a1a2a 60%, #1a0a05 100%);
+      position:relative; width:100%; height:500px; overflow:hidden; background:black;
       border-radius: 16px;
       height: 380px;
       width: 100%;
@@ -1173,10 +1200,7 @@
     }
 
     .footer-logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
+        width: 30%;
     }
 
     .footer-tagline {
@@ -1478,15 +1502,11 @@
 </head>
 
 <body>
-
+  
   <!-- NAV -->
   <nav class="navbar">
     <a href="#" class="nav-logo">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="2">
-        <path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z" />
-        <path d="M12 2v20M3 12h18" />
-      </svg>
-      <span class="nav-logo-text">OLIAURA</span>
+      <img src="lioaura.png" alt=""class="nav-logo-text">
     </a>
     <ul class="nav-links">
       <li><a href="#story">About</a></li>
@@ -1501,7 +1521,7 @@
       <span></span><span></span><span></span>
     </div>
   </nav>
-
+  
   <!-- Mobile Nav -->
   <div class="mobile-nav">
     <span class="close-btn" onclick="document.querySelector('.mobile-nav').classList.remove('open')">✕</span>
@@ -1513,14 +1533,27 @@
     <a href="#support" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Contact</a>
     <a href="#product" class="btn-orange" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Buy
       Now</a>
-  </div>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="hero">
-      <!-- Particles -->
-      <div class="particle" style="width:5px;height:5px;left:15%;bottom:20%;animation:floatUp 6s infinite 0s;"></div>
-      <div class="particle" style="width:4px;height:4px;left:28%;bottom:15%;animation:floatUp 8s infinite 1.2s;"></div>
+    </div>
+    
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <!-- Particles -->
+        <div class="particle" style="width:5px;height:5px;left:15%;bottom:20%;animation:floatUp 6s infinite 0s;"></div>
+        <video 
+        class="video-background"
+        muted
+        playsinline
+        preload="auto"
+        loop>
+        </video>
+        
+        <div id="container"></div>
+        
+        <!-- ✅ Only load free GSAP plugins (no ScrollSmoother) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <div class="particle" style="width:4px;height:4px;left:28%;bottom:15%;animation:floatUp 8s infinite 1.2s;"></div>
       <div class="particle" style="width:6px;height:6px;left:70%;bottom:25%;animation:floatUp 5.5s infinite 2.5s;">
       </div>
       <div class="particle" style="width:4px;height:4px;left:82%;bottom:18%;animation:floatUp 7s infinite 0.8s;"></div>
@@ -1562,8 +1595,16 @@
         <div class="two-col">
           <div class="reveal reveal-d1">
             <div class="img-placeholder">
-              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="1.2"
-                opacity="0.5">
+              <video 
+              src="/video1.mp4" 
+              autoplay 
+              muted 
+              loop 
+              playsinline 
+              preload="auto"
+              style="width:100%; height:100%; object-fit:cover; display:block;">
+            </video>
+            </video>
                 <path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z" />
                 <path d="M12 2c-1 4 1 8 0 10s-3 3-3 3" />
               </svg>
@@ -2008,10 +2049,8 @@
     <div class="footer-grid">
       <div>
         <div class="footer-logo">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8720C" stroke-width="2">
-            <path d="M12 2C6 2 3 7 3 12s3 7 9 10c6-3 9-5 9-10S18 2 12 2z" />
-          </svg>
-          <span class="footer-logo-text">OLIAURA</span>
+
+          <img src="lioaura.png" class="footer-logo-text" alt="">
         </div>
         <p class="footer-tagline">Ancient Roots. Modern Results.<br>Blessed by Nature. Backed by Science.</p>
         <div class="social-row">
@@ -2147,7 +2186,7 @@
         renderHerbs(pill.dataset.filter);
       });
     });
-
+    
     // ─── Testimonial Carousel (─pixel-based translation, resize-safe) ───
     (function () {
       const wrap = document.getElementById('testiCarouselWrap');
@@ -2244,6 +2283,97 @@
       });
     }, { threshold: 0.5 });
     document.querySelectorAll('.stat-number').forEach(el => cntObs.observe(el));
+  /*------------------------------
+  Clean Video Scrub — single implementation, no conflicts
+  ------------------------------*/
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
+
+  (function () {
+    var vid = document.querySelector('video.video-background');
+    if (!vid) return;
+
+    /* Remove loop attr — scrub controls playback position */
+    vid.removeAttribute('loop');
+
+    /* ── Responsive source ─────────────────────────────── */
+    function setSource(callback) {
+      var src = window.matchMedia('(max-width: 768px)').matches
+        ? 'new-mobile.mp4' : 'new-desktop.mp4';
+      if (vid.getAttribute('src') === src) {
+        if (callback) callback();
+        return;
+      }
+      vid.src = src;
+      vid.load();
+      if (callback) vid.addEventListener('loadedmetadata', callback, { once: true });
+    }
+
+    /* ── Wire up the scroll scrub ──────────────────────── */
+    function setupScrub() {
+      /* Prime the decode pipeline: play one tick then pause so browser
+         pre-buffers frames and subsequent seeks are instant */
+      var p = vid.play();
+      if (p) p.then(function () {
+        vid.pause();
+        vid.currentTime = 0;
+      }).catch(function () {});
+
+      ScrollTrigger.create({
+        trigger: '#container',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.4,            /* 400ms GSAP easing — single smooth layer */
+        invalidateOnRefresh: true,
+        onUpdate: function (st) {
+          if (!vid.duration) return;
+          var t = st.progress * vid.duration;
+          /* fastSeek is a lighter, approx seek (Chromium/Safari) */
+          if (typeof vid.fastSeek === 'function') {
+            vid.fastSeek(t);
+          } else {
+            vid.currentTime = t;
+          }
+        }
+      });
+
+      ScrollTrigger.refresh();
+    }
+
+    /* ── Boot sequence ─────────────────────────────────── */
+    function boot() {
+      if (vid.readyState >= 1) {
+        setupScrub();
+      } else {
+        vid.addEventListener('loadedmetadata', setupScrub, { once: true });
+      }
+    }
+
+    setSource(boot);
+
+    /* ── Resize / orientation ──────────────────────────── */
+    var _resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(_resizeTimer);
+      _resizeTimer = setTimeout(function () {
+        setSource(function () { ScrollTrigger.refresh(); });
+      }, 300);
+    });
+
+    window.addEventListener('orientationchange', function () {
+      setTimeout(function () {
+        setSource(function () { ScrollTrigger.refresh(); });
+      }, 500);
+    });
+
+    /* ── Mobile autoplay policy bypass ────────────────── */
+    document.addEventListener('touchstart', function () {
+      var p = vid.play();
+      if (p) p.then(function () { vid.pause(); }).catch(function () {});
+    }, { once: true });
+
+  }());
+  
   </script>
 </body>
 
